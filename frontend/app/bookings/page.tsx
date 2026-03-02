@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { bookingsApi } from '@/lib/api';
 import { Booking } from '@/types/booking';
 import { useToast } from '@/lib/toast';
-import { AvailabilityDisplay } from '@/components/AvailabilityDisplay';
 import { getStatusColor, formatTime, formatDate, toTitleCase } from '@/lib/utils';
 import {
   Card,
@@ -152,33 +151,7 @@ export default function BookingsPage() {
         </div>
       </div>
 
-      {/* Availability Display */}
-      {watchedfacility_id && watchedDate && (
-        <AvailabilityDisplay
-          availability={facilityBookings.length > 0 ? null : {
-            facility: facilities.find(f => f.id.toString() === watchedfacility_id),
-            date: watchedDate,
-            time_slots: facilityBookings.map(booking => ({
-              time: `${booking.start_time} - ${booking.end_time}`,
-              available: false,
-              booking: {
-                id: booking.id,
-                user_id: booking.user_id,
-                date: booking.date,
-                start_time: booking.start_time,
-                end_time: booking.end_time,
-                status: booking.status,
-                notes: booking.notes,
-              }
-            })),
-            total_slots: facilityBookings.length,
-            available_slots: 0
-          }}
-          loading={loading}
-          error={null}
-        />
-      )}
-
+      
       {error && <ErrorMessage message={error} onRetry={load} />}
 
       {/* Table */}
