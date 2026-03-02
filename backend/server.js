@@ -13,14 +13,17 @@ const PORT = process.env.PORT || 5001;
 
 // Middleware
 app.use(express.json());
-// app.use("/facilities", facilityRoutes);
-// app.use("/bookings", bookingRoutes);
-
 app.use(express.urlencoded({ extended: true }));
 
 // CORS configuration
+const allowedOrigins = [
+  'http://localhost:3000',
+  'http://localhost:3001',
+  process.env.FRONTEND_URL || 'https://campus-booking-frontend.onrender.com'
+];
+
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://localhost:3001'],
+  origin: allowedOrigins,
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
