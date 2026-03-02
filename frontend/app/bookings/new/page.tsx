@@ -40,13 +40,7 @@ export default function NewBookingPage() {
   const { toast } = useToast();
 
   const [facilities, setFacilities] = useState<Facility[]>([]);
-  type TimeSlot = {
-  time: string
-  available: boolean
-  booking: Booking | null
-}
-
-const [facilityBookings, setFacilityBookings] = useState<TimeSlot[]>([])
+  const [facilityBookings, setFacilityBookings] = useState<Booking[]>([])
   const [loadingFacilities, setLoadingFacilities] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [slotConflict, setSlotConflict] = useState(false);
@@ -86,21 +80,9 @@ const [facilityBookings, setFacilityBookings] = useState<TimeSlot[]>([])
 
   useEffect(() => {
     if (watchedfacility_id && watchedDate) {
-      bookingsApi.checkAvailability(watchedfacility_id, watchedDate)
-        .then((availability) => {
-          if (availability) {
-            setFacilityBookings(availability.time_slots.map(slot => ({
-              time: slot.time,
-              available: slot.available,
-              booking: slot.booking
-            })));
-            setSlotConflict(false);
-          } else {
-            setFacilityBookings([]);
-            setSlotConflict(true);
-          }
-        })
-        .catch(() => toast('Failed to check availability', 'error'));
+      // Bookings are already loaded via the other useEffect
+      // Slot conflict will be checked in the next useEffect
+      setSlotConflict(false);
     }
   }, [watchedfacility_id, watchedDate]);
 
