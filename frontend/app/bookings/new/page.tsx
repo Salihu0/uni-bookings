@@ -40,7 +40,13 @@ export default function NewBookingPage() {
   const { toast } = useToast();
 
   const [facilities, setFacilities] = useState<Facility[]>([]);
-  const [facilityBookings, setFacilityBookings] = useState<Booking[]>([]);
+  type TimeSlot = {
+  time: string
+  available: boolean
+  booking: Booking | null
+}
+
+const [facilityBookings, setFacilityBookings] = useState<TimeSlot[]>([])
   const [loadingFacilities, setLoadingFacilities] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [slotConflict, setSlotConflict] = useState(false);
