@@ -1,0 +1,43 @@
+services:
+  # Backend API Service
+  - type: web
+    name: campus-booking-api
+    env: node
+    plan: free
+    buildCommand: "npm install"
+    startCommand: "node start.js"
+    healthCheckPath: /api/health
+    envVars:
+      - key: PORT
+        value: 5001
+      - key: DATABASE_URL
+        value: ${DATABASE_URL}
+      - key: JWT_SECRET
+        value: ${JWT_SECRET}
+      - key: NODE_ENV
+        value: production
+    autoDeploy: true
+    healthCheckGracePeriod: 30
+
+  # Frontend Application
+  - type: web
+    name: campus-booking-frontend
+    env: static
+    plan: free
+    buildCommand: "npm run build"
+    staticPublishPath: .next
+    healthCheckPath: /
+    envVars:
+      - key: NEXT_PUBLIC_API_URL
+        value: ${API_URL}
+    autoDeploy: true
+    healthCheckGracePeriod: 30
+
+databases:
+  # PostgreSQL Database
+  - name: campus-booking-db
+    plan: free
+    region: oregon
+    databaseName: campus_booking
+    user: ${DB_USER}
+    password: ${DB_PASSWORD}
