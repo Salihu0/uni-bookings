@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -34,7 +34,7 @@ const schema = z
 
 type FormData = z.infer<typeof schema>;
 
-export default function NewBookingPage() {
+function NewBookingContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { toast } = useToast();
@@ -258,5 +258,13 @@ export default function NewBookingPage() {
         </CardBody>
       </Card>
     </div>
+  );
+}
+
+export default function NewBookingPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <NewBookingContent />
+    </Suspense>
   );
 }
