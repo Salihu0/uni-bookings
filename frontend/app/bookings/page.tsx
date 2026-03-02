@@ -67,8 +67,8 @@ export default function BookingsPage() {
       const q = search.toLowerCase();
       result = result.filter(
         (b) =>
-          (b.facilityName || b.facility_id).toLowerCase().includes(q) ||
-          b.user_id.toLowerCase().includes(q) ||
+          (b.facilityName || b.facility_id.toString()).toLowerCase().includes(q) ||
+          b.user_id.toString().toLowerCase().includes(q) ||
           b.date.includes(q)
       );
     }
