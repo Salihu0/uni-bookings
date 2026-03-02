@@ -7,7 +7,6 @@ import { facilitiesApi, bookingsApi } from '@/lib/api';
 import { Facility } from '@/types/facility';
 import { Booking } from '@/types/booking';
 import { Card, CardBody, PageLoader, ErrorMessage, Badge } from '@/components/ui';
-import { AvailabilityCalendar } from '@/components/facilities/AvailabilityCalendar';
 
 export default function FacilityDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -88,19 +87,6 @@ export default function FacilityDetailPage() {
           + Book Now
         </Link>
       </div>
-
-      {/* Availability */}
-      <Card>
-        <div className="px-6 pt-5 pb-4 border-b border-slate-800">
-          <h2 className="font-bold text-white">Availability</h2>
-          <p className="text-slate-500 text-sm mt-0.5">
-            Real-time slot availability for the next 7 days
-          </p>
-        </div>
-        <CardBody>
-          <AvailabilityCalendar bookings={bookings} />
-        </CardBody>
-      </Card>
 
       {/* Upcoming bookings */}
       <Card>

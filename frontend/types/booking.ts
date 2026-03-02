@@ -37,11 +37,3 @@ export interface TimeSlot {
   available: boolean;
   booking: Booking | null;
 }
-
-export interface AvailabilityResponse {
-  facility: Facility;
-  date: string;
-  time_slots: TimeSlot[];
-  total_slots: number;
-  available_slots: number;
-}

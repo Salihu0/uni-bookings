@@ -48,8 +48,7 @@ campus-booking/
 │   │   ├── index.tsx           # Button, Card, Badge, Input, Select, Modal, etc.
 │   │   └── Navbar.tsx          # Top navigation bar
 │   ├── facilities/
-│   │   ├── FacilityCard.tsx    # Facility card + skeleton
-│   │   └── AvailabilityCalendar.tsx  # 7-day slot availability viewer
+│   │   └── FacilityCard.tsx    # Facility card + skeleton
 │   └── bookings/
 │       └── BookingRow.tsx      # Table row for booking history
 │

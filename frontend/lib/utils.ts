@@ -60,22 +60,6 @@ export function isSlotBooked(
   return { booked: false };
 }
 
-/** Generate full slot objects for a date */
-export function getSlotsForDate(
-  date: string,
-  bookings: Booking[]
-): TimeSlot[] {
-  const times = generateTimeSlots();
-  return times.map((time) => {
-    const { booked, bookingId } = isSlotBooked(time, date, bookings);
-    return {
-      time,
-      label: formatTime(time),
-      available: !booked,
-      bookingId,
-    };
-  });
-}
 
 export function getStatusColor(status: string): string {
   switch (status) {
